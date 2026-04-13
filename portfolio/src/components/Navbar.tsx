@@ -37,12 +37,6 @@ export default function Navbar() {
           >
             Dark
           </button>
-          <button
-            className={`theme-btn ${theme === 'system' ? 'active' : ''}`}
-            onClick={() => setTheme('system')}
-          >
-            System
-          </button>
         </div>
       </div>
     </nav>
