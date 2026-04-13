@@ -1,56 +1,38 @@
-import { Container, Row, Col, Card } from 'react-bootstrap';
 import data from '../data/portfolio.json';
 
 export default function About() {
   return (
-    <div className="min-vh-100 bg-white">
-      <Container className="py-5">
-        <h1 className="display-5 fw-bold mb-4">About Me</h1>
-        
-        <Row className="mb-5">
-          <Col lg={8}>
-            <p className="lead mb-4">{data.bio}</p>
-            <p className="text-muted">
-              I am a passionate developer focused on building scalable web applications
-              and microservices. With experience in both frontend and backend development,
-              I strive to create seamless user experiences backed by robust architectures.
-            </p>
-          </Col>
-        </Row>
+    <div className="about-section">
+      <div className="page-container">
+        <h1 className="section-title gradient-text">About Me</h1>
+        <p className="section-subtitle">{data.bio}</p>
 
-        <h2 className="h3 fw-bold mb-4">Experience</h2>
-        <Row className="mb-5">
+        <div className="experience-list">
           {data.experience.map((exp, index) => (
-            <Col md={6} key={index} className="mb-3">
-              <Card className="h-100 shadow-sm">
-                <Card.Body>
-                  <h3 className="h5 fw-bold">{exp.role}</h3>
-                  <p className="text-primary mb-2">{exp.company}</p>
-                  <p className="text-muted mb-2">{exp.period}</p>
-                  <p className="mb-0">{exp.description}</p>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-
-        <h2 className="h3 fw-bold mb-4">Connect</h2>
-        <Row>
-          <Col>
-            <div className="d-flex gap-3">
-              <a href={data.github} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
-                GitHub
-              </a>
-              <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
-                LinkedIn
-              </a>
-              <a href={data.twitter} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
-                Twitter
-              </a>
+            <div key={index} className="glass-card experience-item">
+              <h3 className="experience-role">{exp.role}</h3>
+              <p className="experience-company">{exp.company}</p>
+              <p className="experience-period">{exp.period}</p>
+              <p className="experience-description">{exp.description}</p>
             </div>
-          </Col>
-        </Row>
-      </Container>
+          ))}
+        </div>
+
+        <div style={{ marginTop: '80px', textAlign: 'center' }}>
+          <h3 style={{ marginBottom: '24px', color: 'var(--text-secondary)' }}>Connect</h3>
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
+            <a href={data.github} target="_blank" rel="noopener noreferrer" className="btn-outline">
+              GitHub
+            </a>
+            <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className="btn-outline">
+              LinkedIn
+            </a>
+            <a href={data.twitter} target="_blank" rel="noopener noreferrer" className="btn-outline">
+              Twitter
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
