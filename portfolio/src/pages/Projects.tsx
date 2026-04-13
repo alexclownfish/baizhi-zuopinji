@@ -1,6 +1,8 @@
-import data from '../data/portfolio.json';
+import { usePortfolio } from '../context/PortfolioContext';
 
 export default function Projects() {
+  const { data } = usePortfolio();
+
   return (
     <div className="projects-section">
       <div className="page-container" style={{ textAlign: 'center' }}>

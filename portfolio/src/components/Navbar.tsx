@@ -1,4 +1,10 @@
+import { usePortfolio } from '../context/PortfolioContext';
+import { useTheme } from '../context/ThemeContext';
+
 export default function Navbar() {
+  const { data } = usePortfolio();
+  const { theme, setTheme } = useTheme();
+
   const links = [
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
@@ -10,7 +16,7 @@ export default function Navbar() {
   return (
     <nav className="navbar-modern">
       <div className="nav-container">
-        <a href="/" className="nav-brand">Portfolio</a>
+        <a href="/" className="nav-brand">{data.name}</a>
         <ul className="nav-links">
           {links.map((link) => (
             <li key={link.to}>
@@ -18,6 +24,26 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+        <div className="theme-switcher">
+          <button
+            className={`theme-btn ${theme === 'light' ? 'active' : ''}`}
+            onClick={() => setTheme('light')}
+          >
+            Light
+          </button>
+          <button
+            className={`theme-btn ${theme === 'dark' ? 'active' : ''}`}
+            onClick={() => setTheme('dark')}
+          >
+            Dark
+          </button>
+          <button
+            className={`theme-btn ${theme === 'system' ? 'active' : ''}`}
+            onClick={() => setTheme('system')}
+          >
+            System
+          </button>
+        </div>
       </div>
     </nav>
   );

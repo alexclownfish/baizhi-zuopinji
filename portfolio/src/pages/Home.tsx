@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import data from '../data/portfolio.json';
+import { usePortfolio } from '../context/PortfolioContext';
 
 export default function Home() {
+  const { data } = usePortfolio();
+
   return (
     <div>
       <section className="hero-section">
@@ -9,7 +11,7 @@ export default function Home() {
           <div className="hero-content">
             <p className="title">{data.title}</p>
             <h1>
-              Hi, I'm <span className="gradient-text">{data.name}</span>
+              Hi, I&apos;m <span className="gradient-text">{data.name}</span>
             </h1>
             <p className="bio">{data.bio}</p>
             <div className="hero-buttons">

@@ -1,6 +1,8 @@
-import data from '../data/portfolio.json';
+import { usePortfolio } from '../context/PortfolioContext';
 
 export default function Contact() {
+  const { data } = usePortfolio();
+
   return (
     <div className="contact-section">
       <div className="page-container" style={{ textAlign: 'center' }}>

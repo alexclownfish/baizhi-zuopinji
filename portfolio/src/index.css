@@ -5,17 +5,30 @@
 }
 
 :root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-card: rgba(0, 0, 0, 0.02);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --accent: #8b5cf6;
+  --accent-secondary: #06b6d4;
+  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+  --card-border: rgba(0, 0, 0, 0.08);
+  --glow: rgba(139, 92, 246, 0.15);
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] {
   --bg-primary: #0a0a0f;
   --bg-secondary: #12121a;
   --bg-card: rgba(255, 255, 255, 0.03);
   --text-primary: #ffffff;
   --text-secondary: #a1a1aa;
   --text-muted: #71717a;
-  --accent: #8b5cf6;
-  --accent-secondary: #06b6d4;
-  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
   --card-border: rgba(255, 255, 255, 0.08);
   --glow: rgba(139, 92, 246, 0.15);
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 body {
@@ -25,6 +38,7 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 #root {
@@ -102,6 +116,35 @@ h1, h2, h3, h4, h5, h6 {
 .btn-outline:hover {
   border-color: var(--accent);
   background: rgba(139, 92, 246, 0.1);
+  color: var(--accent);
+}
+
+.theme-switcher {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.theme-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.theme-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.theme-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
   color: white;
 }
 
@@ -130,10 +173,11 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
   z-index: 100;
   padding: 16px 24px;
-  background: rgba(10, 10, 15, 0.8);
+  background: var(--bg-primary);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--card-border);
+  transition: background 0.3s ease;
 }
 
 .nav-container {
@@ -168,7 +212,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link:hover,
 .nav-link.active {
-  color: white;
+  color: var(--accent);
 }
 
 .hero-section {
@@ -252,6 +296,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   font-size: 10rem;
   font-weight: 700;
+  transition: background 0.3s ease;
 }
 
 @keyframes pulse {
@@ -273,6 +318,8 @@ h1, h2, h3, h4, h5, h6 {
 .feature-card {
   padding: 32px;
   text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
 }
 
 .feature-card h3 {
@@ -290,6 +337,12 @@ h1, h2, h3, h4, h5, h6 {
 .about-section,
 .contact-section {
   padding: 120px 24px;
+  background: var(--bg-secondary);
+  transition: background 0.3s ease;
+}
+
+.projects-section {
+  background: var(--bg-primary);
 }
 
 .skills-grid {
@@ -321,7 +374,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .skill-bar {
   height: 8px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--card-border);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -357,6 +410,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .project-card {
   overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
 }
 
 .project-image {
@@ -417,6 +472,8 @@ h1, h2, h3, h4, h5, h6 {
 .experience-item {
   padding: 32px;
   margin-bottom: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
 }
 
 .experience-role {
@@ -451,6 +508,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact-info {
   padding: 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
 }
 
 .contact-item {
@@ -495,6 +554,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact-message {
   padding: 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
   text-align: center;
 }
 
@@ -502,6 +563,15 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-secondary);
   line-height: 1.8;
   font-size: 1.1rem;
+}
+
+.loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--text-muted);
 }
 
 @media (max-width: 1024px) {
